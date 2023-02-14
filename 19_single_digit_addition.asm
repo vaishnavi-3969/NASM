@@ -14,33 +14,34 @@ section .bss
 section .text
 global _start
 _start:
-
+    ; PRINT TO INPUT FIRST NUMBER
 	  mov edx,len1
 	  mov ecx,msg1
 	  mov ebx,1
 	  mov eax,4
 	  int 0x80
-
+    ; TAKE INPUT / NUMBER 1 FORM THE USER
 	  mov edx,2
 	  mov ecx,num1
 	  mov ebx,0
 	  mov eax,3
 	  int 0x80
-
+; PRINT TO INPUT NEXT NUMBER
 	  mov edx,len2
 	  mov ecx,msg2
 	  mov ebx,1
 	  mov eax,4
 	  int 0x80
-
+; INPUT NEXT NUMBER
 	  mov edx,2
 	  mov ecx,num2
 	  mov ebx,0
 	  mov eax,3
 	  int 0x80
 
+
 	  mov eax,[num1]
-	  sub eax,'0'
+	  sub eax,'0'; convert the number in al (in the range 0-9) into a character that's ready for outputting
 	  mov ebx,[num2]
 	  sub ebx,'0'
 
