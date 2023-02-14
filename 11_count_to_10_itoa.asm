@@ -16,4 +16,16 @@
 ;idiv esi -> eax=0, edx=1
 ;------------
 
+% include '5_functions.asm'
+section .text
+    global _start
+_start:
+    mov ecx,0
 
+nextNumber:
+    inc ecx
+    mov eax,ecx
+    call iprintLF
+    jne nextNumber
+
+    call quit
