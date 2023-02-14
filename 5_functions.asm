@@ -1,3 +1,48 @@
+; integer printing fn
+iprint:
+    push eax
+    push ecx
+    push edx
+    push esi
+    mov ecx,0
+
+divideLoop:
+    inc ecx; count each byte to print - no. of chars
+    mov edx,0
+    mov esi,10
+    idiv esi
+    add edx,48 ;-> edx holds remainder
+    push edx
+    cmp eax,0 ; check if the intger can be divided anymore
+    jnz divideLoop
+
+printLoop:
+    dec ecx ; count down each byte that we put on the stack
+    mov eax,esp; for printing
+    call sprint
+    pop eax; remove last char to move to esi
+    cmp ecx,0; have we printed everything on stack
+    jnz printLoop
+
+    pop esi
+    pop edx
+    pop ecx
+    pop eax
+    ret
+
+;Integer printring fn witrh linefeed
+iPrintLF:
+    call iprint
+    push eax; to preserve it while we use thea eax register
+    mov eax,esp ;linefeed
+    mov eax,esp; addr of the curr stack ptr into eax for spprint
+    call sprint
+    pop eax; remove linefeed character from stack
+    pop eax; restore original value of eax beofre our fn was called
+    ret
+
+    ;---------------------
+
 ; calculating the length of the string
 slen:
     push ebx
@@ -13,6 +58,8 @@ finished:
     sub eax,ebx
     pop ebx
     ret
+
+;-----------------------------
 ; string printing msg
 sprint:
     push eax
@@ -28,7 +75,8 @@ sprint:
     mov ebx,1
     mov eax,4
     int 80h
-
+;------------------
+;string printing with linefeed fn
 sprintLF:
     call    sprint
 
