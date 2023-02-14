@@ -7,7 +7,7 @@ section .text
 _start:
     mov ebx,msg
     mov eax,ebx
-
+ 
     nextChar:
         cmp byte[eax],0
         jz finished
@@ -26,4 +26,3 @@ _start:
     mov eax,1
     mov ebx,0
     int 80h
-    
