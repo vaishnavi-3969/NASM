@@ -187,7 +187,7 @@ _multiplication:
     ; msg for num 1
     mov eax,4
     mov ebx,1
-    mov ecx, msg_num1
+    mov ecx,msg_num1
     mov edx, len_num1
     int 80h
     
@@ -213,13 +213,13 @@ _multiplication:
     int 80h
     
     ; perform multiplication
-    mov eax,[num1]
-    sub eax, '0'
-    mov ebx,[num2]
-    sub ebx, '0'
-    mul ebx
-    add eax, '0'
-    mov [result],eax
+    mov al,[num1]
+    sub al, '0'
+    mov bl,[num2]
+    sub bl, '0'
+    mul bl
+    add al, '0'
+    mov [result],al
     
     
     ; msg to display result
@@ -274,13 +274,13 @@ _division:
     int 80h
     
     ; perform division
-    mov eax,[num1]
-    sub eax,'0'
-    mov ebx,[num2]
-    sub ebx,'0'
-    div ebx
-    add eax,'0'
-    mov [result], eax
+    mov al,[num1]
+    sub al,'0'
+    mov bl,[num2]
+    sub bl,'0'
+    div bl
+    add al,'0'
+    mov [result], al
     
     ; display result
     mov eax, 4
