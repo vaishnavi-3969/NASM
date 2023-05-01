@@ -50,7 +50,7 @@ positive:
     mov ecx,msg_positive
     mov edx, len_positive
     int 80h
-    jmp exit
+    jmp _start
     
 negative:
     mov eax,4
@@ -58,7 +58,7 @@ negative:
     mov ecx,msg_negative
     mov edx,len_negative
     int 80h
-    jmp exit
+    jmp _start
 
 zero:
     mov eax,4
@@ -66,7 +66,7 @@ zero:
     mov ecx,msg_zero
     mov edx,len_zero
     int 80h
-    jmp exit
+    jmp _start
 
 invalid:
     mov eax,4
@@ -74,9 +74,12 @@ invalid:
     mov ecx, msg_invalid
     mov edx, len_invalid
     int 80h
-    jmp exit
+    jmp _start
     
 exit:
     mov eax,1
     mov ebx,0
     int 80h
+
+
+    
