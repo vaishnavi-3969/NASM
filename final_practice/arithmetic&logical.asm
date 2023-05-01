@@ -214,12 +214,20 @@ _multiplication:
     
     ; perform multiplication
     mov eax,[num1]
-    sub eax,'0'
+    sub eax, '0'
     mov ebx,[num2]
-    sub ebx,'0'
+    sub ebx, '0'
     mul ebx
-    add eax,'0'
-    mov [result], eax
+    add eax, '0'
+    mov [result],eax
+    
+    
+    ; msg to display result
+    mov eax,4
+    mov ebx,1
+    mov ecx, msg_result
+    mov edx, len_result
+    int 80h
     
     ; display result
     mov eax, 4
