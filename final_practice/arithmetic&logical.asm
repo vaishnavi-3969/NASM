@@ -1,11 +1,10 @@
-; performing all the arithmetic operations
-
+; performing all the arithmetic and logical operations
 section .data
     msg_num1 db "Enter number 1: ",10,0
     len_num1 equ $-msg_num1
     msg_num2 db "Enter number 2: ", 10,0
     len_num2 equ $-msg_num2
-    msg_menu db 10,"---------Menu---------",10,"1. Addition",10,"2. Subtraction",10,"3. Multiplication",10,"4.Division",10,"0. Exit",10,"Enter your choice",10,0
+    msg_menu db 10,"!-----------------Menu-----------------!",10,"---------ARITHMETIC OPERATIONS---------",10,"1. Addition",10,"2. Subtraction",10,"3. Multiplication",10,"4. Division",10,"---------LOGICAL OPERATIONS---------",10,"5. AND",10,"6. OR",10,"7. NOT",10,"8. NAND",10,"9. NOR",10,"10. XNOR",10,"0. Exit",10,"Enter your choice",10,0
     len_menu equ $-msg_menu
     msg_result db "The result is: ", 0
     len_result equ $ - msg_result
