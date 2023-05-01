@@ -31,25 +31,25 @@ section .data
 section .text
 global _start
 _start:
-    display msg1,len1
-    read str1,10
-    jmp reverse
+    display msg1,len1 ; displays msg to enter the string
+    read str1,10    ; inputs no. from user
+    jmp reverse ; jump to reverse
 
 reverse:
-    mov esi,str1
+    mov esi,str1; string to be reversed
     mov edi,rev
-    mov cl,al
-    add esi,eax
-    dec esi
+    mov cl,al; counter containing the length of the string
+    add esi,eax; reaches to the end of the string + 1
+    dec esi; end of string
     L1:
-        mov al,byte[esi]
-        mov byte[edi],al
-        inc edi
-        dec esi
-        dec cl
-        jnz L1
-        display rev,10
-        int 80h
+        mov al,byte[esi] ; move character by character to al from esi
+        mov byte[edi],al    ; move character by character to edi through al
+        inc edi ; increment edi as it points to starting of string
+        dec esi ; decrements esi as it points to end of the string
+        dec cl  ; decrement counter
+        jnz L1  ; continue loop if the counter doeesn't reach zero
+        display rev,10  ; display reverse string
+        int 80h;    ; end
 
 exit:
     mov eax,1
