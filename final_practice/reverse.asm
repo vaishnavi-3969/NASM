@@ -25,18 +25,16 @@ section .data
     len1 equ $-msg1
     msg2 db "Enter the string length: ",10,0
     len2 equ $-msg2
-    msg3 db "Enter string reverse: ",10,0
+    msg3 db "String reverse: ",10,0
     len3 equ $-msg3
 
 section .text
 global _start
 _start:
-    display msg1, len1
+    display msg1,len1
     read str1,10
     jmp reverse
-    display msg3, len3
-    jmp exit
-    
+
 reverse:
     mov esi,str1
     mov edi,rev
@@ -44,15 +42,15 @@ reverse:
     add esi,eax
     dec esi
     L1:
-        mov al, byte[esi]
+        mov al,byte[esi]
         mov byte[edi],al
         inc edi
         dec esi
         dec cl
         jnz L1
-    display rev,10
-    int 80h
-    
+        display rev,10
+        int 80h
+
 exit:
     mov eax,1
     mov ebx,0
