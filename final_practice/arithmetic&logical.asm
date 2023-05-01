@@ -56,6 +56,8 @@ _menu:
     je _subtract
     cmp byte[choice], '3'
     je _multiplication
+    cmp byte[choice], '4'
+    je _division
     
 _add:
     ; displaying msg
@@ -114,7 +116,7 @@ _add:
     mov ecx, result
     mov edx, 2
     int 80h
-    call _start
+    jmp _start
 
 _subtract:
     ; display msg
@@ -173,7 +175,7 @@ _subtract:
     mov ecx, result
     mov edx, 2
     int 80h
-    call _start
+    jmp _start
 
 _multiplication:
     mov eax,4
@@ -186,7 +188,7 @@ _multiplication:
     mov eax,4
     mov ebx,1
     mov ecx, msg_num1
-    mov edx, 2
+    mov edx, len_num1
     int 80h
     
     ; input no. 1
@@ -205,7 +207,7 @@ _multiplication:
     
     ; input second no.
     mov eax,3
-    mov ebx,1
+    mov ebx,0
     mov ecx,num2
     mov edx, 2
     int 80h
@@ -216,6 +218,59 @@ _multiplication:
     mov ebx,[num2]
     sub ebx,'0'
     mul ebx
+    add eax,'0'
+    mov [result], eax
+    
+    ; display result
+    mov eax, 4
+    mov ebx,1
+    mov ecx, result
+    mov edx, 2
+    int 80h
+    
+    call _start
+    
+_division:
+    mov eax,4
+    mov ebx,0
+    mov ecx, msg_div
+    mov edx, len_div
+    int 80h
+    
+    ; msg for num 1
+    mov eax,4
+    mov ebx,1
+    mov ecx, msg_num1
+    mov edx, len_num1
+    int 80h
+    
+    ; input no. 1
+    mov eax,3
+    mov ebx,0
+    mov ecx, num1
+    mov edx, 2
+    int 80h
+    
+    ; msg for num2
+    mov eax,4
+    mov ebx,1
+    mov ecx, msg_num2
+    mov edx, len_num2
+    int 80h
+    
+    ; input second no.
+    mov eax,3
+    mov ebx,0
+    mov ecx,num2
+    mov edx, 2
+    int 80h
+    
+    ; perform division
+    mov eax,[num1]
+    sub eax,'0'
+    mov ebx,[num2]
+    sub ebx,'0'
+    div ebx
     add eax,'0'
     mov [result], eax
     
