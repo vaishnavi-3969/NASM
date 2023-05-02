@@ -1,0 +1,5 @@
+ORG 00H
+MOV A, #8H
+MOV B, #8H
+MUL AB
+END
