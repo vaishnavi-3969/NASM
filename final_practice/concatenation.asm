@@ -30,13 +30,12 @@ _start:
     display msg_string,len_string
     read str1,50
     jmp concat1
-
+    
 concat1:
     dec al
-    mov byte[lenstr],al
     mov esi,str1
     mov edi,str2
-    mov cl,byte[lenstr]
+    mov cl,al
     L1:
         mov al,byte[esi]
         mov byte[edi],al
@@ -49,11 +48,10 @@ concat1:
 concat2:
     display msg_string,len_string
     read str1,50
-   dec al
-   mov byte[lenstr],al
-   mov esi,str1
-   mov cl,byte[lenstr]
-    L2:
+    dec al
+    mov esi,str1
+    mov cl,al
+   L2:
         mov al,byte[esi]
         mov byte[edi],al
         inc esi
@@ -63,6 +61,7 @@ concat2:
     display msg_concatenation,len_concatenation
     display str2,50
     jmp exit
+    
 exit:
     mov eax,1
     mov ebx,0
