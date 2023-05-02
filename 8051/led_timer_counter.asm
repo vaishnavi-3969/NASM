@@ -5,7 +5,7 @@ MSG1: DB 6,'LED ON'
 
 ORG 310H ; next message will be stored at address 310h
 MSG2: DB 7,'LED OFF'
-CTR EQU 310H ; defines a constant 31h
+CTR EQU 31H ; defines a constant 31h
 
 ORG 00H ; sets the program coutner to address 00h
 CLR P1.2 ; sets the pin 2 of port 1 as low to turn off the led
