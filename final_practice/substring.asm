@@ -52,6 +52,7 @@ _start:
     mov esi,string
     mov edi,substring
     mov cl,byte[string_length]
+    
 loop:
     mov ch,byte[esi]
     cmp ch,byte[edi]
@@ -60,13 +61,14 @@ loop:
     dec cl
     jz not_substring
     jnz loop
+    
 next:
     inc esi
     inc edi
     dec byte[substring_length]
     jz yes_substring
     mov ch,byte[esi]
-    mov ch,byte[edi]
+    cmp ch,byte[edi]
     je next
     jne loop2
     
@@ -75,12 +77,12 @@ loop2:
     dec edi
     jmp loop
     
-not_substring:
+yes_substring:
     display msg_is_substring, len_is_substring
     mov eax,SYS_EXIT
     int 80h
     
-yes_substring:
+not_substring:
     display msg_not_substring, len_not_substring
     mov eax,SYS_EXIT
     int 80h
