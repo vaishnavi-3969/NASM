@@ -15,10 +15,9 @@
 %endmacro
 
 section .bss
-    str1 resb 10
-    quotient resb 1
-    remainder resb 1
-    
+    str1 resb 100
+    quotient resb 2
+
 section .data
     msg1 db "Enter the string: ",10,0
     len1 equ $-msg1
@@ -29,7 +28,7 @@ section .text
 global _start
 _start:
     display msg1,len1
-    read str1,10
+    read str1,100
     jmp len
 
 len:
@@ -38,15 +37,14 @@ len:
     div bl
     add al,30h
     add ah,30h
+    mov [quotient+1],ah
     mov [quotient],al
-    mov [remainder],ah
     display msg2,len2
-    display quotient,1
-    display remainder, 1
+    display quotient,2
     int 80h
     jmp exit
 exit: 
-    mov eax,4
-    mov ebx,1
+    mov eax,1
+    mov ebx,0
     int 80h
     
