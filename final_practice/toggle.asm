@@ -1,4 +1,5 @@
-;Toggle 
+;Toggle : uppper to lower and lower to upper case
+; =====================================================
 %macro display 2
     mov eax,4
     mov ebx,1
@@ -41,18 +42,20 @@ toggle:
 
 _toggle:
     mov al,byte[esi]
-    cmp al,'a'
+    cmp al,'A'
     jb _store
-    cmp al,'a'
-    jae lowercase
+    cmp al,'A'
+    jae uppercase
     
 lowercase:
     cmp al,'z'
-    jb _lowercase
+    jbe _lowercase
     cmp al,'z'
-    ja uppercase
+    ja _store
     
 _lowercase:
+    cmp al,'a'
+    jb _store
     sub al, ' '
     jmp _store
    
@@ -64,7 +67,7 @@ uppercase:
 
 _uppercase:
     cmp al,'Z'
-    ja _store
+    ja lowercase
     add al,' '
     jmp _store
 
