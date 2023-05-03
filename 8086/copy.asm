@@ -124,9 +124,7 @@ syscall
 ; bash-4.4$ ld -o A7 Assignment7.0 
 ; bash-4.4$ ./A7 type a.txt 
 ; Enter the data to be typed in the file 
-; dhaan 
-; bash-4.4$ ./A7 type a.txt 
+=; bash-4.4$ ./A7 type a.txt 
 ; Enter the data to be typed in the file 
-; Dhanashree shinde 
 ; bash-4.4$ ./A7 COPY a.txt b.txt 
 ; File successfully copied bash-4.4$ ./A7 DELETE b.txt File successfully deleted!!!! bash-4.4$ 
