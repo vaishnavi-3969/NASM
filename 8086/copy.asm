@@ -9,11 +9,11 @@ section .data msg: db "File does not exist ",OAH
     buffer: times 1000 db ''filelen : dq 0 
 
 section .bss 
-filedes_1: resq 1 
-filedes_2: resq 1 
-filename_1 resb 16 
-filename_2 resb 16 
-choice: resb 8 
+    filedes_1: resq 1 
+    filedes_2: resq 1 
+    filename_1 resb 16 
+    filename_2 resb 16 
+    choice: resb 8 
 
 section .txt 
 global_start 
@@ -37,9 +37,15 @@ pop rbx
 pop rbx 
 ;READ THE CHOICE i.e COPY OR DELETE OR 
 TYPE mov [choice],rbx 
-mov rsi,qword[choice] cmp byte[rsi],43H je copy cmp byte[rsi],44H 
-je Delete jmp type 
-COPY COMMAND copy: pop rbx mov rsi,filename_1 up_1: 
+mov rsi,qword[choice] 
+cmp byte[rsi],43H 
+je copy 
+cmp byte[rsi],44H 
+je Delete 
+jmp type 
+
+COPY COMMAND 
+copy: pop rbx mov rsi,filename_1 up_1: 
 mov al,byte[rbx] mov byte[rsi],al inc rsi inc rbx cmp byte[rbx],OH jne up_1 pop rbx mov 
 rsi,filename_2 up_2: mov al,byte[rbx] mov byte[rsi],al inc rbx inc rsi cmp byte[rbx],0H jne up_2 mov rax,2 mov 
 rdi,filename_1 ;FIRST FILE 
@@ -113,12 +119,13 @@ exit:
 mov rax,60 
 mov rdi.0 
 syscall 
-bash-4.4$ nasm -f elf64 -F stabs Assignment7.asm bash-4.4$ ld -o A7 Assignment7.0 
-bash-4.4$ ./A7 type a.txt 
-Enter the data to be typed in the file 
-dhaan 
-bash-4.4$ ./A7 type a.txt 
-Enter the data to be typed in the file 
-Dhanashree shinde 
-bash-4.4$ ./A7 COPY a.txt b.txt 
-File successfully copied bash-4.4$ ./A7 DELETE b.txt File successfully deleted!!!! bash-4.4$ 
+
+; bash-4.4$ nasm -f elf64 -F stabs Assignment7.asm bash-4.4$ ld -o A7 Assignment7.0 
+; bash-4.4$ ./A7 type a.txt 
+; Enter the data to be typed in the file 
+; dhaan 
+; bash-4.4$ ./A7 type a.txt 
+; Enter the data to be typed in the file 
+; Dhanashree shinde 
+; bash-4.4$ ./A7 COPY a.txt b.txt 
+; File successfully copied bash-4.4$ ./A7 DELETE b.txt File successfully deleted!!!! bash-4.4$ 
