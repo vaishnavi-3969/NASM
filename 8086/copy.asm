@@ -120,7 +120,8 @@ mov rax,60
 mov rdi.0 
 syscall 
 
-; bash-4.4$ nasm -f elf64 -F stabs Assignment7.asm bash-4.4$ ld -o A7 Assignment7.0 
+; bash-4.4$ nasm -f elf64 -F stabs Assignment7.asm 
+; bash-4.4$ ld -o A7 Assignment7.0 
 ; bash-4.4$ ./A7 type a.txt 
 ; Enter the data to be typed in the file 
 ; dhaan 
