@@ -28,3 +28,22 @@ L1:
     INC R1
     DJNZ R7, L1
 END
+
+; INTERNAL TO EXTERNAL  BLOCK TRANSFER: OVERLAPPING
+; ==================================================
+
+ORG 00H
+MOV R0,#20H
+MOV R1,#03H ; from where to copy
+MOV R2,#05H ; counter from how much element to copy
+MOV DPTR,#0020H
+BACK:
+INC DPTR
+DJNZ R1,BACK
+REPEAT:
+MOV A,@R0
+MOVX @DPTR,A
+INC R0
+INC DPTR
+DJNZ R2,REPEAT
+END
